@@ -1,0 +1,28 @@
+# langchain
+langchain
+langchain-core
+langchain-community
+
+# groq integration
+langchain-groq
+
+# Hugging-face Integration
+langchain-huggingface
+transformers
+
+# Enviorment veriable managment
+python-dotenv
+
+# Data validation
+pydantic
+pydantic[email]
+pydantic_settings
+
+# langchain-vectorStore
+langchain-chroma
+
+# Sentence tranformer
+sentence-transformers
+
+# web scrapper
+beautifulsoup4
