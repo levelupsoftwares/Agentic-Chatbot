@@ -26,3 +26,6 @@ sentence-transformers
 
 # web scrapper
 beautifulsoup4
+
+# file handling
+pathlib
