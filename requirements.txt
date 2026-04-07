@@ -29,3 +29,6 @@ beautifulsoup4
 
 # file handling
 pathlib
+
+#vector store
+langchain_chroma

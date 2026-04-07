@@ -3,3 +3,7 @@ venv
 
 # Enviornment Variable
 .env
+
+# Python stuff
+__init__.py 
+__pycache__

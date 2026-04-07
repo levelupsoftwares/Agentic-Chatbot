@@ -1,4 +1,3 @@
-------------------------------------------
 DOCUMENT_TYPE: service_page
 CATEGORY: ecommerce_management
 TITLE: eCommerce Management - Quality Resourcing Group LLC
