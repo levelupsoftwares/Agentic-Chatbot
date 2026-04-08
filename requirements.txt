@@ -32,3 +32,6 @@ pathlib
 
 #vector store
 langchain_chroma
+
+# bm25 vector search
+rank_bm25

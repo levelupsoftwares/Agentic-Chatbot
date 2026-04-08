@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     EMBEDDING_MODEL:str = "sentence-transformers/all-MiniLM-L6-v2"
 
     # Chunking
-    CHUNK_SIZE:int = 500
+    CHUNK_SIZE:int = 1000
     CHUNK_OVERLAP:int = 100
 
     # vectorstore
