@@ -5,9 +5,10 @@ from config.settings import settings
 from langchain_core.runnables import RunnableLambda,RunnableParallel,RunnablePassthrough
 from langchain_core.prompts import ChatPromptTemplate ,MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
+from langchain.messages import HumanMessage ,AIMessage
 load_dotenv()
 
-# chat_history = []
+chat_history = []
 llm = ChatGroq(model=settings.LLM_MODEL)
 retriever = hybrid_search()
 parser = StrOutputParser()
@@ -17,21 +18,51 @@ parser = StrOutputParser()
 def formate_docs(data):
     return "\n".join([page.page_content for page in data])
 
+# rewrite prompt by llm using chathistory for retriever
+def rewriter(query):
+    rewrite_prompt = ChatPromptTemplate.from_messages([
+        ("system",""""Given the chat history and the latest user query, rewrite the query into a clear, standalone question.
+
+- Resolve all references (e.g., "it", "this", "point 3") using the chat history.
+- Replace vague phrases with their full meaning.
+- Preserve the original intent of the user.
+- If the query is already clear and standalone, return it unchanged.
+- Do NOT answer the question — only rewrite it.
+
+Output only the rewritten query."""),
+        MessagesPlaceholder(variable_name='chat_history'),
+        ("human","{query}")
+    ]) 
+    return rewrite_prompt.invoke({'query':query,'chat_history':chat_history})
+
 chain = (
+    rewriter
+    |llm
+    |parser
+    |
     RunnableParallel({
         'query':RunnablePassthrough(),
-        'context':retriever | formate_docs
+        'context':retriever | formate_docs,
+        'chat_history':RunnableLambda(lambda x:chat_history)
     })
     |ChatPromptTemplate.from_messages([
         ('system', settings.SYSTEM_PROMPT),
         ('system',"Context:\n{context}"),
+        MessagesPlaceholder(variable_name='chat_history'),
         ('human',"{query}")
     ])
     |llm
     |parser
 )
 
-print(chain.invoke('tell me about the pricing you charge for the websites'))
+while True:
+    user_input =input("You: ")
+    chat_history.append(HumanMessage(user_input))
+    if user_input.lower() == "exit":
+        break 
+    output = chain.invoke(user_input)
+    print(f"Bot:{output}")
+    chat_history.append(AIMessage(output))
 
 # def prompt_assembled(input_query):
 #      system_message = settings.SYSTEM_PROMPT

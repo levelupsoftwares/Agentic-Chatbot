@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     VECTORSTORE_PATH:str = "data/vectorstore"
 
     # Retrieval
-    TOP_K:int = 2
+    TOP_K:int = 3
 
     # App
     APP_NAME:str = "RAG BOO"
