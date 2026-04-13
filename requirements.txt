@@ -35,3 +35,6 @@ langchain_chroma
 
 # bm25 vector search
 rank_bm25
+
+# streamlit
+streamlit

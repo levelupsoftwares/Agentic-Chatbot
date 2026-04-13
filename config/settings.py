@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     TOP_K:int = 3
 
     # App
-    APP_NAME:str = "RAG BOO"
+    APP_NAME:str = "RAG BOOT"
 
 
     class Config:

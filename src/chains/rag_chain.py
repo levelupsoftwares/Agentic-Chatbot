@@ -55,14 +55,15 @@ chain = (
     |parser
 )
 
-while True:
-    user_input =input("You: ")
-    chat_history.append(HumanMessage(user_input))
-    if user_input.lower() == "exit":
-        break 
-    output = chain.invoke(user_input)
-    print(f"Bot:{output}")
-    chat_history.append(AIMessage(output))
+if __name__=="__main__":
+    while True:
+        user_input =input("You: ")
+        chat_history.append(HumanMessage(user_input))
+        if user_input.lower() == "exit":
+            break 
+        output = chain.invoke(user_input)
+        print(f"Bot:{output}")
+        chat_history.append(AIMessage(output))
 
 # def prompt_assembled(input_query):
 #      system_message = settings.SYSTEM_PROMPT
