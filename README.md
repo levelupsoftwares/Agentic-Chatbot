@@ -73,7 +73,7 @@ HUGGINGFACEHUB_API_TOKEN='Your-HUGGINGFACE-API-KEY-HERE'
 ## ▶️ Run the Project
 🌐 Run UI (Streamlit)
 ```
-streamlit run app.py
+streamlit run main.py
 ```
 ---
 
