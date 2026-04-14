@@ -7,7 +7,7 @@ An intelligent chatbot built using **LangChain + Groq LLM + Hybrid Search** that
 ## 📸 Project Preview
 
 <!-- 🔽 Replace the path below with your image -->
-![App Screenshot](.//preview/preview_Img.png)
+![App Screenshot](.//assets/preview_Img.png)
 
 
 
